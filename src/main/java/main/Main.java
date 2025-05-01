@@ -1,37 +1,10 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import dao.AlunoDAO;
-import model.Aluno;
+import view.TelaInicial;
 
 public class Main {
 	public static void main(String[] args) {
-		AlunoDAO alunoBD = new AlunoDAO();
-		/***********
-		
-		Aluno novoAluno = new Aluno(0, "Liliane Jose", "29/01/2007", "Medicina", "liliane@gmail.com", "(81) 987545654");
-		
-		alunoBD.criarAluno(novoAluno);
-		***************/
-		
-		List<Aluno> listaAlunos = new ArrayList<>();
-		
-		
-		listaAlunos = alunoBD.lerAlunos();
-		
-		for(Aluno x: listaAlunos) {
-			System.out.println(x+"\n****************************************************");
-		}
-		
-		/**********************************************
-		alunoBD.atualizarCursoAluno(2, "Matematica");
-		Aluno alunoPesquisado = alunoBD.pesquisarAluno(2);
-		System.out.println(alunoPesquisado);
-		
-		************************************************/
-		//alunoBD.deletarAluno(6);
+		new TelaInicial();
 		
 	}
 
