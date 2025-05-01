@@ -2,8 +2,14 @@ package dao;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Aluno;
 import util.Conexao;
@@ -35,5 +41,50 @@ public class AlunoDAO {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public List<Aluno> lerAlunos(){
+		List<Aluno> alunosBD = new ArrayList<>();
+		
+		String SQL = "SELECT * FROM Aluno";
+		int matricula;
+		String nome, dataNascimento, curso, email, telefone;
+		
+		try {
+			Connection conn = Conexao.getConexao();
+			
+			PreparedStatement stmt = conn.prepareStatement(SQL);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				matricula = rs.getInt("matricula");
+				nome = rs.getString("nome");
+				dataNascimento = transformandoDateString(rs.getDate("data_nascimento"));
+				curso = rs.getString("curso");
+				email = rs.getString("email");
+				telefone = rs.getString("telefone");
+				
+				alunosBD.add(new Aluno(matricula, nome, dataNascimento, curso, email, telefone));
+			}
+			
+			return alunosBD;
+		}
+		catch(SQLException ex) {
+			System.err.println("Erro na conexão com o banco de dados. "+ex.getMessage());
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		} 
+		return null;
+	}
+	
+	private String transformandoDateString(Date dataNascimentoBD) {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		
+		LocalDate ld = dataNascimentoBD.toLocalDate();
+		
+		String dataFormatada = ld.format(dtf);
+		
+		return dataFormatada;
+	}
 }
