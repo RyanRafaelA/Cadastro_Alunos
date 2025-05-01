@@ -91,13 +91,14 @@ public class AlunoDAO {
 	public Aluno pesquisarAluno(int matricula) {
 		Aluno alunoPesquisado = null;
 		
-		String sql = "SELECT * FROM Aluno WHERE matricula = "+matricula;
+		String sql = "SELECT * FROM Aluno WHERE matricula = ?";
 		String nome, dataNascimento, curso, email, telefone;
 		
 		try {
 			Connection conn = Conexao.getConexao();
 			
 			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, matricula);
 			
 			ResultSet rs = stmt.executeQuery();
 			
@@ -120,5 +121,27 @@ public class AlunoDAO {
 			e.printStackTrace();
 		} 
 		return alunoPesquisado;
+	}
+	
+	public void atualizarCursoAluno(int matricula, String curso) {
+		String sql = "UPDATE Aluno SET curso = ? WHERE matricula = ?";
+		
+		try {
+			Connection conn = Conexao.getConexao();
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			
+			stmt.setString(1, curso);
+			stmt.setInt(2, matricula);
+			stmt.executeUpdate();
+			
+			System.out.println("Aluno atualizado com sucesso.");
+		}
+		catch(SQLException ex) {
+			System.err.println("Erro na conexão com o banco de dados. "+ex.getMessage());
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
 	}
 }

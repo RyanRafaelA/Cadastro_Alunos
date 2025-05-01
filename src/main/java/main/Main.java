@@ -22,6 +22,7 @@ public class Main {
 			System.out.println(x+"\n****************************************************");
 		}
 		******************************************/
+		alunoBD.atualizarCursoAluno(2, "Matematica");
 		Aluno alunoPesquisado = alunoBD.pesquisarAluno(2);
 		System.out.println(alunoPesquisado);
 		
