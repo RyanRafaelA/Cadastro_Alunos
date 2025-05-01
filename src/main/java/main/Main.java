@@ -1,5 +1,8 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import dao.AlunoDAO;
 import model.Aluno;
 
@@ -12,7 +15,7 @@ public class Main {
 		
 		alunoBD.criarAluno(novoAluno);
 		***************/
-		/**************************************
+		
 		List<Aluno> listaAlunos = new ArrayList<>();
 		
 		
@@ -21,10 +24,14 @@ public class Main {
 		for(Aluno x: listaAlunos) {
 			System.out.println(x+"\n****************************************************");
 		}
-		******************************************/
+		
+		/**********************************************
 		alunoBD.atualizarCursoAluno(2, "Matematica");
 		Aluno alunoPesquisado = alunoBD.pesquisarAluno(2);
 		System.out.println(alunoPesquisado);
+		
+		************************************************/
+		//alunoBD.deletarAluno(6);
 		
 	}
 

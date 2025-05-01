@@ -188,4 +188,25 @@ public class AlunoDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void deletarAluno(int matricula) {
+		String sql = "DELETE FROM Aluno WHERE matricula = ?";
+		
+		try {
+			Connection conn = Conexao.getConexao();
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			
+			stmt.setInt(1, matricula);
+			stmt.executeUpdate();
+			
+			System.out.println("Aluno deletado com sucesso");
+		}
+		catch(SQLException ex) {
+			System.err.println("Erro na conexão com o banco de dados. "+ex.getMessage());
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+	}
 }
