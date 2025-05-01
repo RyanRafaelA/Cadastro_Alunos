@@ -16,6 +16,16 @@ import util.Conexao;
 
 public class AlunoDAO {
 	
+	private String transformandoDateString(Date dataNascimentoBD) {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		
+		LocalDate ld = dataNascimentoBD.toLocalDate();
+		
+		String dataFormatada = ld.format(dtf);
+		
+		return dataFormatada;
+	}
+	
 	public void criarAluno(Aluno novoAluno) {
 		String sql = "INSERT INTO Aluno (nome, data_nascimento, curso, email, telefone) VALUES (?, ?, ?, ?, ?)";
 		
@@ -78,13 +88,37 @@ public class AlunoDAO {
 		return null;
 	}
 	
-	private String transformandoDateString(Date dataNascimentoBD) {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	public Aluno pesquisarAluno(int matricula) {
+		Aluno alunoPesquisado = null;
 		
-		LocalDate ld = dataNascimentoBD.toLocalDate();
+		String sql = "SELECT * FROM Aluno WHERE matricula = "+matricula;
+		String nome, dataNascimento, curso, email, telefone;
 		
-		String dataFormatada = ld.format(dtf);
-		
-		return dataFormatada;
+		try {
+			Connection conn = Conexao.getConexao();
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				nome = rs.getString("nome");
+				dataNascimento = transformandoDateString(rs.getDate("data_nascimento"));
+				curso = rs.getString("curso");
+				email = rs.getString("email");
+				telefone = rs.getString("telefone");
+			
+				alunoPesquisado = new Aluno(matricula, nome, dataNascimento, curso, email, telefone);
+			} else {
+				System.err.println("Não foi encontrado nenhum aluno");
+			}
+		}
+		catch(SQLException ex) {
+			System.err.println("Erro na conexão com o banco de dados. "+ex.getMessage());
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		} 
+		return alunoPesquisado;
 	}
 }

@@ -58,7 +58,7 @@ public class Aluno {
 	
 	@Override
 	public String toString() {
-		return "Nome: "+getNome()+"\nMatricula"+getMatricula()+"\nCurso: "+getCurso()+"\nData Nascimento: "+getDataNascimento()+
+		return "Nome: "+getNome()+"\nMatricula: "+getMatricula()+"\nCurso: "+getCurso()+"\nData Nascimento: "+getDataNascimento()+
 				"\nE-mail: "+getEmail()+"\nTelefone: "+getTelefone();
 	}
 	
