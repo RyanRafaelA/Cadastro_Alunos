@@ -166,4 +166,26 @@ public class AlunoDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void atualizarTelefoneAluno(int matricula, String telefone) {
+		String sql = "UPDATE Aluno SET telefone = ? WHERE matricula = ?";
+		
+		try {
+			Connection conn = Conexao.getConexao();
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			
+			stmt.setString(1, telefone);
+			stmt.setInt(2, matricula);
+			stmt.executeUpdate();
+			
+			System.out.println("Aluno atualizado com sucesso.");
+		}
+		catch(SQLException ex) {
+			System.err.println("Erro na conexão com o banco de dados. "+ex.getMessage());
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+	}
 }
