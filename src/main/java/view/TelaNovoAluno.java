@@ -92,7 +92,7 @@ public class TelaNovoAluno extends JFrame{
 			String email = campoEmail.getText();
 			String telefone = campoTelefone.getText();
 			
-			boolean telefoneValido = telefone.matches("^\\(\\d{2}\\)\\s\\d{8}$");
+			boolean telefoneValido = telefone.matches("\\(\\d{2}\\) \\d{4}-\\d{4}");
 			boolean dataValida = dataNascimento.matches("^([0-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\\d{4}$");
 			
 			if(telefoneValido && dataValida) {

@@ -46,10 +46,13 @@ public class TelaInicial extends JFrame{
 					new TelaNovoAluno();
 					dispose();
 				} else if(texto.equals("Ver Alunos")) {
+					//new TelaVerAlunos();
 					dispose();
 				} else if(texto.equals("Atualizar Aluno")) {
+					//new TelaAtualizarAluno();
 					dispose();
 				} else if(texto.equals("Deletar Aluno")) {
+					//new TelaDeletarAluno();
 					dispose();
 				} else {
 					dispose();
