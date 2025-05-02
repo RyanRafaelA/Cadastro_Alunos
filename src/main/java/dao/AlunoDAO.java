@@ -16,7 +16,7 @@ import util.Conexao;
 
 public class AlunoDAO {
 	
-	private String transformandoDateString(Date dataNascimentoBD) {
+	private static String transformandoDateString(Date dataNascimentoBD) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		
 		LocalDate ld = dataNascimentoBD.toLocalDate();
@@ -26,7 +26,7 @@ public class AlunoDAO {
 		return dataFormatada;
 	}
 	
-	public void criarAluno(Aluno novoAluno) {
+	public static String criarAluno(Aluno novoAluno) {
 		String sql = "INSERT INTO Aluno (nome, data_nascimento, curso, email, telefone) VALUES (?, ?, ?, ?, ?)";
 		
 		try {
@@ -42,7 +42,7 @@ public class AlunoDAO {
 			
 			stmt.executeUpdate();
 			
-			System.out.println("Novo Aluno adicionado com sucesso.");
+			return "Novo Aluno adicionado com sucesso.";
 		}
 		catch(SQLException ex) {
 			System.err.println("Erro na conexão com o banco de dados. "+ex.getMessage());
@@ -50,9 +50,10 @@ public class AlunoDAO {
 		catch(IOException e){
 			e.printStackTrace();
 		}
+		return "Erro ao adicionar o Aluno";
 	}
 	
-	public List<Aluno> lerAlunos(){
+	public static List<Aluno> lerAlunos(){
 		List<Aluno> alunosBD = new ArrayList<>();
 		
 		String SQL = "SELECT * FROM Aluno";
@@ -88,7 +89,7 @@ public class AlunoDAO {
 		return null;
 	}
 	
-	public Aluno pesquisarAluno(int matricula) {
+	public static Aluno pesquisarAluno(int matricula) {
 		Aluno alunoPesquisado = null;
 		
 		String sql = "SELECT * FROM Aluno WHERE matricula = ?";
@@ -123,7 +124,7 @@ public class AlunoDAO {
 		return alunoPesquisado;
 	}
 	
-	public void atualizarCursoAluno(int matricula, String curso) {
+	public static void atualizarCursoAluno(int matricula, String curso) {
 		String sql = "UPDATE Aluno SET curso = ? WHERE matricula = ?";
 		
 		try {
@@ -145,7 +146,7 @@ public class AlunoDAO {
 		}
 	}
 	
-	public void atualizarEmailAluno(int matricula, String email) {
+	public static void atualizarEmailAluno(int matricula, String email) {
 		String sql = "UPDATE Aluno SET email = ? WHERE matricula = ?";
 		
 		try {
@@ -167,7 +168,7 @@ public class AlunoDAO {
 		}
 	}
 	
-	public void atualizarTelefoneAluno(int matricula, String telefone) {
+	public static void atualizarTelefoneAluno(int matricula, String telefone) {
 		String sql = "UPDATE Aluno SET telefone = ? WHERE matricula = ?";
 		
 		try {
@@ -189,7 +190,7 @@ public class AlunoDAO {
 		}
 	}
 	
-	public void deletarAluno(int matricula) {
+	public static void deletarAluno(int matricula) {
 		String sql = "DELETE FROM Aluno WHERE matricula = ?";
 		
 		try {
