@@ -30,7 +30,7 @@ public class TelaInicial extends JFrame{
 		panel.add(Box.createVerticalStrut(20));
 		
 		String[] textos = {
-				"Novo Aluno", "Ver Alunos", "Atualizar Aluno", "Deletar Aluno", "Sair"
+				"Novo Aluno", "Alunos", "Atualizar Aluno", "Deletar Aluno", "Sair"
 		};
 		
 		for(String texto: textos) {
@@ -45,8 +45,8 @@ public class TelaInicial extends JFrame{
 				if(texto.equals("Novo Aluno")) {
 					new TelaNovoAluno();
 					dispose();
-				} else if(texto.equals("Ver Alunos")) {
-					//new TelaVerAlunos();
+				} else if(texto.equals("Alunos")) {
+					new TelaVerAlunos();
 					dispose();
 				} else if(texto.equals("Atualizar Aluno")) {
 					//new TelaAtualizarAluno();
