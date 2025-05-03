@@ -16,14 +16,12 @@ import util.Conexao;
 
 public class AlunoDAO {
 	
-	private static String transformandoDateString(Date dataNascimentoBD) {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	private static String transformandoDateString(Date dataSql) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		
-		LocalDate ld = dataNascimentoBD.toLocalDate();
-		
-		String dataFormatada = ld.format(dtf);
-		
-		return dataFormatada;
+		if(dataSql == null) return "";
+		LocalDate data = dataSql.toLocalDate();
+		return data.format(formatter);
 	}
 	
 	public static String criarAluno(Aluno novoAluno) {
