@@ -58,7 +58,7 @@ public class TelaNovoAluno extends JFrame{
 		
 		gbc.gridx = 0;
 		gbc.gridy = 4;
-		panel.add(new JLabel("Telefone: "), gbc);
+		panel.add(new JLabel("Telefone (xx) xxxx-xxxx: "), gbc);
 		gbc.gridx = 1;
 		JTextField campoTelefone = new JTextField(20);
 		panel.add(campoTelefone, gbc);

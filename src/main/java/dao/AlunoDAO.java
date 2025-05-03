@@ -124,7 +124,7 @@ public class AlunoDAO {
 		return alunoPesquisado;
 	}
 	
-	public static void atualizarCursoAluno(int matricula, String curso) {
+	public static String atualizarCursoAluno(int matricula, String curso) {
 		String sql = "UPDATE Aluno SET curso = ? WHERE matricula = ?";
 		
 		try {
@@ -136,7 +136,7 @@ public class AlunoDAO {
 			stmt.setInt(2, matricula);
 			stmt.executeUpdate();
 			
-			System.out.println("Aluno atualizado com sucesso.");
+			return "Curso atualizado com sucesso.";
 		}
 		catch(SQLException ex) {
 			System.err.println("Erro na conexão com o banco de dados. "+ex.getMessage());
@@ -144,9 +144,10 @@ public class AlunoDAO {
 		catch(IOException e){
 			e.printStackTrace();
 		}
+		return "Erro ao atualizar o curso";
 	}
 	
-	public static void atualizarEmailAluno(int matricula, String email) {
+	public static String atualizarEmailAluno(int matricula, String email) {
 		String sql = "UPDATE Aluno SET email = ? WHERE matricula = ?";
 		
 		try {
@@ -158,7 +159,7 @@ public class AlunoDAO {
 			stmt.setInt(2, matricula);
 			stmt.executeUpdate();
 			
-			System.out.println("Aluno atualizado com sucesso.");
+			return "E-mail atualizado com sucesso.";
 		}
 		catch(SQLException ex) {
 			System.err.println("Erro na conexão com o banco de dados. "+ex.getMessage());
@@ -166,9 +167,10 @@ public class AlunoDAO {
 		catch(IOException e){
 			e.printStackTrace();
 		}
+		return "Erro ao atualizar o e-mail!";
 	}
 	
-	public static void atualizarTelefoneAluno(int matricula, String telefone) {
+	public static String atualizarTelefoneAluno(int matricula, String telefone) {
 		String sql = "UPDATE Aluno SET telefone = ? WHERE matricula = ?";
 		
 		try {
@@ -180,7 +182,7 @@ public class AlunoDAO {
 			stmt.setInt(2, matricula);
 			stmt.executeUpdate();
 			
-			System.out.println("Aluno atualizado com sucesso.");
+			return "Telefone atualizado com sucesso.";
 		}
 		catch(SQLException ex) {
 			System.err.println("Erro na conexão com o banco de dados. "+ex.getMessage());
@@ -188,6 +190,8 @@ public class AlunoDAO {
 		catch(IOException e){
 			e.printStackTrace();
 		}
+		
+		return "Erro ao atualizar o telefone";
 	}
 	
 	public static void deletarAluno(int matricula) {
