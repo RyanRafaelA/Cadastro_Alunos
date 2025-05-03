@@ -83,6 +83,16 @@ public class TelaVerAlunos extends JFrame{
 			}
 		});
 		
+		gbc.gridy = 2;
+		gbc.gridwidth = 1;
+		JButton BVoltar = new JButton("Voltar");
+		panel.add(BVoltar, gbc);
+		
+		BVoltar.addActionListener(e -> { 
+			new TelaInicial();
+			dispose();
+		});
+		
 		add(panel);
 		setVisible(true);
 	}
