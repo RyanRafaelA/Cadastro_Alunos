@@ -52,7 +52,7 @@ public class TelaInicial extends JFrame{
 					new TelaAtualizarAluno();
 					dispose();
 				} else if(texto.equals("Deletar Aluno")) {
-					//new TelaDeletarAluno();
+					new TelaDeletarAluno();
 					dispose();
 				} else {
 					dispose();

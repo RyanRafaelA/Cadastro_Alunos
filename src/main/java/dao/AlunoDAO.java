@@ -194,7 +194,7 @@ public class AlunoDAO {
 		return "Erro ao atualizar o telefone";
 	}
 	
-	public static void deletarAluno(int matricula) {
+	public static String deletarAluno(int matricula) {
 		String sql = "DELETE FROM Aluno WHERE matricula = ?";
 		
 		try {
@@ -205,7 +205,7 @@ public class AlunoDAO {
 			stmt.setInt(1, matricula);
 			stmt.executeUpdate();
 			
-			System.out.println("Aluno deletado com sucesso");
+			return "Aluno deletado com sucesso";
 		}
 		catch(SQLException ex) {
 			System.err.println("Erro na conexão com o banco de dados. "+ex.getMessage());
@@ -213,5 +213,6 @@ public class AlunoDAO {
 		catch(IOException e){
 			e.printStackTrace();
 		}
+		return "Erro ao deletar o aluno";
 	}
 }
