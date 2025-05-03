@@ -37,7 +37,7 @@ public class Aluno {
 	
 	public String getNome() { return nome; }
 	
-	public String getDataNascimento() { return dataNascimento.format(FORMATO_DATA); }
+	public LocalDate getDataNascimento() { return dataNascimento; }
 	
 	@Override
 	public int hashCode() {
@@ -59,7 +59,7 @@ public class Aluno {
 	@Override
 	public String toString() {
 		return "Nome: "+getNome()+"\nMatricula: "+getMatricula()+"\nCurso: "+getCurso()+"\nData Nascimento: "
-				+getDataNascimento()+"\nE-mail: "+getEmail()+"\nTelefone: "+getTelefone();
+				+getDataNascimento().format(FORMATO_DATA)+"\nE-mail: "+getEmail()+"\nTelefone: "+getTelefone();
 	}
 	
 	
